@@ -10,13 +10,12 @@ public class WebConfig {
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
-      @SuppressWarnings("null")
       @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
             .allowedOrigins(
-                "http://localhost:8080",
-                "http://localhost:61790" // Flutter Web
+                "http://localhost:8085",
+                "http://localhost:65104" // Flutter Web
         )
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             .allowedHeaders("*")

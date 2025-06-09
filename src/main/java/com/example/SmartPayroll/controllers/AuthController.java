@@ -25,6 +25,7 @@ public class AuthController {
       User user = authService.authenticate(request.getUsername(), request.getPassword());
 
       UserDTO userDTO = new UserDTO(
+          user.getId_usuario(),
           user.getNombres(),
           user.getApellidos(),
           user.getDni(),
@@ -32,7 +33,10 @@ public class AuthController {
           user.getCorreo(),
           user.getDireccion(),
           user.getRol(),
-          user.getIdLogeo());
+          user.getIdLogeo(),
+          user.getCargo(),
+          user.getFecha_ingreso(),
+          user.getFecha_nacimiento());
 
       return ResponseEntity.ok(userDTO);
     } catch (BadCredentialsException e) {
