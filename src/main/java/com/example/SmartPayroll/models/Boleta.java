@@ -81,4 +81,15 @@ public class Boleta {
     @JoinColumn(name = "id_planilla")
     private Planilla planilla;
     
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private User usuario;
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
 }

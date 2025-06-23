@@ -1,6 +1,5 @@
 package com.example.SmartPayroll.models;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,21 +7,22 @@ import lombok.Data;
 @Table(name = "usuarios")
 @Data
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Integer id_usuario;
-    
+    @Column(name = "id_usuario") 
+    private Integer idUsuario;
+
     private String nombres;
     private String apellidos;
     private String dni;
     private String telefono;
     private String correo;
     private String direccion;
-    
+
     @Column(unique = true)
-    private String idLogeo; 
-    
+    private String idLogeo;
+
     private String password;
     private String rol;
     private String estado;
@@ -31,7 +31,7 @@ public class User {
     private String fecha_ingreso;
     private String fecha_nacimiento;
 
-    // Agrega estos campos:
+    // Campos adicionales
     private String sexo;
     private String turno;
 
@@ -39,7 +39,7 @@ public class User {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("User{");
-        sb.append("  id_usuario=").append(id_usuario);
+        sb.append("idUsuario=").append(idUsuario);
         sb.append(", nombres=").append(nombres);
         sb.append(", apellidos=").append(apellidos);
         sb.append(", dni=").append(dni);
@@ -57,15 +57,5 @@ public class User {
         sb.append(", turno=").append(turno);
         sb.append('}');
         return sb.toString();
-    }
-
-    // Getter explícito para id_usuario
-    public Integer getId_usuario() {
-        return id_usuario;
-    }
-
-    // Setter explícito para id_usuario
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
     }
 }

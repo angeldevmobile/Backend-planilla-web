@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ViewEmployeeAdRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT new com.example.SmartPayroll.dto.ViewEmployeeAdDTO(u.id_usuario, u.nombres, u.apellidos, u.correo, u.cargo, u.rol, u.estado) FROM User u")
+    @Query("SELECT new com.example.SmartPayroll.dto.ViewEmployeeAdDTO(u.idUsuario, u.nombres, u.apellidos, u.correo, u.cargo, u.rol, u.estado) FROM User u")
+
     List<ViewEmployeeAdDTO> getAllEmpleados();
 }

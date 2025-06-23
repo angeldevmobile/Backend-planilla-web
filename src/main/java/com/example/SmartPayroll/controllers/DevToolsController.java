@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.SmartPayroll.repositories.UserRepositoy;
+import com.example.SmartPayroll.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/api/dev-tools")
 @Profile("dev")
 public class DevToolsController {
 
-  private final UserRepositoy userRepository;
+  private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public DevToolsController(UserRepositoy userRepository, PasswordEncoder passwordEncoder) {
+  public DevToolsController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
   }

@@ -25,7 +25,7 @@ public class AuthController {
       User user = authService.authenticate(request.getUsername(), request.getPassword());
 
       UserDTO userDTO = new UserDTO(
-          user.getId_usuario(),
+          user.getIdUsuario(),
           user.getNombres(),
           user.getApellidos(),
           user.getDni(),

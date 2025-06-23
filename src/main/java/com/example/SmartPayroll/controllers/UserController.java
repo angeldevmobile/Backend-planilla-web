@@ -1,7 +1,7 @@
 package com.example.SmartPayroll.controllers;
 
 import com.example.SmartPayroll.models.User;
-import com.example.SmartPayroll.repositories.UserRepositoy;
+import com.example.SmartPayroll.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UserController {
 
   @Autowired
-  private UserRepositoy userRepository;
+  private UserRepository userRepository;
 
   @PutMapping("/{idLogeo}")
   public ResponseEntity<?> actualizarUsuario(@PathVariable String idLogeo, @RequestBody User datosActualizados) {

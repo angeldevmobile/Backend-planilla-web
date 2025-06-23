@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.List;
 import java.math.BigDecimal; 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
+import java.io.ByteArrayOutputStream;
 
 @Service
 public class PlanillaService {
@@ -61,19 +64,56 @@ public class PlanillaService {
 
     // --- MÉTODO PARA OBTENER EL TOTAL DE SUELDO BRUTO DEL MES ACTUAL ---
     public BigDecimal getTotalSueldoBrutoMesActual() {
-        int mes = java.time.LocalDate.now().getMonthValue();
+        int mes = java.time.LocalDate.now().getMonthValue() - 1;
         int anio = java.time.LocalDate.now().getYear();
         return planillaRepository.getTotalSueldoBrutoByMesAndAnio(mes, anio);
     }
 
+    public byte[] generarBoletaPDF(Planilla planilla) throws Exception {
+        logger.info("Generando PDF para la planilla con ID: {}", planilla.getIdPlanilla()); 
+        Document document = new Document();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PdfWriter.getInstance(document, baos);
+        document.open();
+
+        document.add(new Paragraph("Boleta de Pago", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));
+        document.add(new Paragraph(""));
+
+        PdfPTable table = new PdfPTable(2);
+        table.setWidthPercentage(100);
+
+        table.addCell("Empleado:");
+        table.addCell(planilla.getUsuario().getNombres());
+        table.addCell("Periodo:");
+        table.addCell(planilla.getPeriodoMes() + "/" + planilla.getPeriodoAnio());
+        table.addCell("Fecha de generación:");
+        table.addCell(planilla.getFechaGeneracion().toString());
+        table.addCell("Sueldo Bruto:");
+        table.addCell(planilla.getSueldoBruto().toString());
+        table.addCell("Bonificaciones:");
+        table.addCell(planilla.getBonificaciones().toString());
+        table.addCell("Total Descuentos:");
+        table.addCell(planilla.getTotalDescuentos().toString());
+        table.addCell("Sueldo Neto:");
+        table.addCell(planilla.getSueldoNeto().toString());
+        document.add(table);
+        document.close();
+        logger.info("PDF generado correctamente para la planilla con ID: {}", planilla.getIdPlanilla()); 
+        return baos.toByteArray();
+    }
+
     // --- MÉTODO PARA OBTENER EL PROMEDIO DE SUELDO BRUTO DEL MES ACTUAL ---
     public BigDecimal getPromedioSueldoBrutoMesActual() {
-        int mes = java.time.LocalDate.now().getMonthValue();
+        int mes = java.time.LocalDate.now().getMonthValue() - 1;
         int anio = java.time.LocalDate.now().getYear();
         return planillaRepository.getPromedioSueldoBrutoByMesAndAnio(mes, anio);
     }
 
     public List<Planilla> getAllPlanillas() {
         return planillaRepository.findAll();
+    }
+
+    public Planilla getPlanillaById(Integer id) {
+        return planillaRepository.findById(id).orElse(null);
     }
 }

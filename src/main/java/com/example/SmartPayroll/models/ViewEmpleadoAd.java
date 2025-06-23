@@ -17,15 +17,14 @@ public class ViewEmpleadoAd {
 
     public List<ViewEmployeeAdDTO> getAllEmpleados() {
         List<User> usuarios = empleadoRepository.findAll();
-        System.out.println("Usuarios recuperados: " + usuarios); 
+        System.out.println("Usuarios recuperados: " + usuarios);
         return usuarios.stream().map(user -> new ViewEmployeeAdDTO(
-                user.getId_usuario(),
+                user.getIdUsuario(),
                 user.getNombres(),
                 user.getApellidos(),
                 user.getCorreo(),
                 user.getCargo(),
                 user.getRol(),
-                user.getEstado() 
-        )).collect(Collectors.toList());
+                user.getEstado())).collect(Collectors.toList());
     }
 }

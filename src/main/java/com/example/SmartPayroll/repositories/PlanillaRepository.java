@@ -9,9 +9,15 @@ import com.example.SmartPayroll.models.Planilla;
 import java.math.BigDecimal;
 
 public interface PlanillaRepository extends JpaRepository<Planilla, Integer> {
-    @Query("SELECT COALESCE(SUM(p.sueldoBruto), 0) FROM Planilla p WHERE p.periodo_mes = :mes AND p.periodo_anio = :anio")
+
+    // Total mensual
+    @Query("SELECT COALESCE(SUM(p.sueldoBruto), 0) FROM Planilla p WHERE p.periodoMes = :mes AND p.periodoAnio = :anio")
     BigDecimal getTotalSueldoBrutoByMesAndAnio(@Param("mes") Integer mes, @Param("anio") Integer anio);
 
-    @Query("SELECT COALESCE(AVG(p.sueldoBruto), 0) FROM Planilla p WHERE p.periodo_mes = :mes AND p.periodo_anio = :anio")
+    // Promedio mensual
+    @Query("SELECT COALESCE(AVG(p.sueldoBruto), 0) FROM Planilla p WHERE p.periodoMes = :mes AND p.periodoAnio = :anio")
     BigDecimal getPromedioSueldoBrutoByMesAndAnio(@Param("mes") Integer mes, @Param("anio") Integer anio);
+
+    // Última planilla de un usuario
+    Planilla findTopByUsuarioIdUsuarioOrderByFechaGeneracionDescIdPlanillaDesc(Integer idUsuario);
 }

@@ -12,14 +12,14 @@ import com.example.SmartPayroll.repositories.ContactoEmergenciaRepository;
 import com.example.SmartPayroll.repositories.ContratoRepository;
 import com.example.SmartPayroll.repositories.PlanillaRepository;
 import com.example.SmartPayroll.repositories.TipoContratoRepository;
-import com.example.SmartPayroll.repositories.UserRepositoy;
+import com.example.SmartPayroll.repositories.UserRepository;
 import com.example.SmartPayroll.services.PasswordUtil;
 
 @Service
 public class RegisterEmployee {
 
   @Autowired
-  private UserRepositoy userRepository;
+  private UserRepository userRepository;
 
   @Autowired
   private ContratoRepository contratoRepository;
@@ -59,7 +59,7 @@ public class RegisterEmployee {
 
     // Guardar contrato
     Contrato contrato = new Contrato();
-    contrato.setIdUsuario(user.getId_usuario());
+    contrato.setIdUsuario(user.getIdUsuario());
 
     // Buscar el TipoContrato por ID
     TipoContrato tipoContrato = tipoContratoRepository.findById(dto.idTipoContrato)
@@ -72,9 +72,9 @@ public class RegisterEmployee {
 
     // Validar antes de parsear fechaFinContrato
     if (dto.fechaFinContrato != null && !dto.fechaFinContrato.trim().isEmpty()) {
-        contrato.setFecha_fin(LocalDate.parse(dto.fechaFinContrato, formatter));
+      contrato.setFecha_fin(LocalDate.parse(dto.fechaFinContrato, formatter));
     } else {
-        contrato.setFecha_fin(null); 
+      contrato.setFecha_fin(null);
     }
 
     contrato.setSueldoBruto(dto.sueldoBruto);
@@ -84,15 +84,15 @@ public class RegisterEmployee {
     // Guardar planilla
     Planilla planilla = new Planilla();
     planilla.setUsuario(user);
-    planilla.setPeriodo_mes(dto.periodoMes);
-    planilla.setPeriodo_anio(dto.periodoAnio);
+    planilla.setPeriodoMes(dto.periodoMes);
+    planilla.setPeriodoAnio(dto.periodoAnio);
     planilla.setSueldoBruto(dto.sueldoBruto);
     planilla.setBonificaciones(dto.bonificaciones);
     planillaRepository.save(planilla);
 
     // Guardar contacto de emergencia
     ContactoEmergencia contacto = new ContactoEmergencia();
-    contacto.setIdUsuario(user.getId_usuario());
+    contacto.setIdUsuario(user.getIdUsuario());
     contacto.setNombreContacto(dto.nombreContacto);
     contacto.setTelefonoContacto(dto.telefonoContacto);
     contacto.setParentesco(dto.parentescoContacto);

@@ -26,10 +26,10 @@ public class BoletaController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // <-- Cambia aquí
 
     return boletas.stream().map(b -> {
-      int mesNum = b.getPlanilla() != null && b.getPlanilla().getPeriodo_mes() != null ? b.getPlanilla().getPeriodo_mes() : 1;
+      int mesNum = b.getPlanilla() != null && b.getPlanilla().getPeriodoMes() != null ? b.getPlanilla().getPeriodoMes() : 1;
       String nombreMes = Month.of(mesNum).getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toUpperCase();
 
-      int periodoAnio = b.getPlanilla() != null && b.getPlanilla().getPeriodo_anio() != null ? b.getPlanilla().getPeriodo_anio() : 0;
+      int periodoAnio = b.getPlanilla() != null && b.getPlanilla().getPeriodoAnio() != null ? b.getPlanilla().getPeriodoAnio() : 0;
       String fechaGeneracion = b.getFecha_generacion() != null ? b.getFecha_generacion().format(formatter) : "";
       String rutaArchivo = b.getRuta_archivo() != null ? b.getRuta_archivo() : "";
 

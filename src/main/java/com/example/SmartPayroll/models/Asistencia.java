@@ -28,6 +28,10 @@ public class Asistencia {
     @JsonProperty("hora_salida")
     private String horaSalida;
 
+    @Transient
+    @JsonProperty("horasExtra")
+    private Double horasExtra;
+
     // Getters y Setters
 
     public Long getIdAsistencia() {
@@ -68,5 +72,13 @@ public class Asistencia {
 
     public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
+    }
+
+    public Double getHorasExtra() {
+        return horasExtra;
+    }
+
+    public void setHorasExtra(Double horasExtra) {
+        this.horasExtra = horasExtra;
     }
 }

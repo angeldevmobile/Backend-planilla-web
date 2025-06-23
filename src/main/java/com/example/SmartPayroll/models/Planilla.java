@@ -1,5 +1,6 @@
 package com.example.SmartPayroll.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,52 +14,78 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-
 @Entity
 @Table(name = "planillas")
 public class Planilla {
-     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_planilla;
 
-    private Integer periodo_mes;
-    private Integer periodo_anio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_planilla")
+    private Integer idPlanilla;
+
+    @Column(name = "periodo_mes")
+    @JsonProperty("periodo_mes")
+    private Integer periodoMes;
+
+    @Column(name = "periodo_anio")
+    @JsonProperty("periodo_anio")
+    private Integer periodoAnio;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private User usuario;
 
+    @Column(name = "sueldo_bruto")
     private BigDecimal sueldoBruto;
+
+    @Column(name = "bonificaciones")
     private BigDecimal bonificaciones;
+
+    @Column(name = "total_descuentos")
     private BigDecimal totalDescuentos;
+
+    @Column(name = "sueldo_neto")
     private BigDecimal sueldoNeto;
 
     @Column(name = "fecha_generacion")
     @Temporal(TemporalType.DATE)
     private Date fechaGeneracion;
 
-    public Integer getId_planilla() {
-        return id_planilla;
+    @Column(name = "dias_asistidos")
+    private Integer diasAsistidos;
+
+    @Column(name = "dias_faltados")
+    private Integer diasFaltados;
+
+    @Column(name = "descuento_afp")
+    private BigDecimal descuentoAfp;
+
+    @Column(name = "descuento_onp")
+    private BigDecimal descuentoOnp;
+
+    // Getters y Setters con camelCase
+    public Integer getIdPlanilla() {
+        return idPlanilla;
     }
 
-    public void setId_planilla(Integer id_planilla) {
-        this.id_planilla = id_planilla;
+    public void setIdPlanilla(Integer idPlanilla) {
+        this.idPlanilla = idPlanilla;
     }
 
-    public Integer getPeriodo_mes() {
-        return periodo_mes;
+    public Integer getPeriodoMes() {
+        return periodoMes;
     }
 
-    public void setPeriodo_mes(Integer periodo_mes) {
-        this.periodo_mes = periodo_mes;
+    public void setPeriodoMes(Integer periodoMes) {
+        this.periodoMes = periodoMes;
     }
 
-    public Integer getPeriodo_anio() {
-        return periodo_anio;
+    public Integer getPeriodoAnio() {
+        return periodoAnio;
     }
 
-    public void setPeriodo_anio(Integer periodo_anio) {
-        this.periodo_anio = periodo_anio;
+    public void setPeriodoAnio(Integer periodoAnio) {
+        this.periodoAnio = periodoAnio;
     }
 
     public User getUsuario() {
@@ -101,22 +128,48 @@ public class Planilla {
         this.sueldoNeto = sueldoNeto;
     }
 
-    public Integer getIdUsuario() {
-        return usuario != null ? usuario.getId_usuario() : null;
-    }
-
-    public void setUsuarioId(Integer idUsuario) {
-        if (this.usuario == null) {
-            this.usuario = new User();
-        }
-        this.usuario.setId_usuario(idUsuario);
-    }
-
     public Date getFechaGeneracion() {
         return fechaGeneracion;
     }
 
     public void setFechaGeneracion(Date fechaGeneracion) {
         this.fechaGeneracion = fechaGeneracion;
+    }
+
+    public Integer getDiasAsistidos() {
+        return diasAsistidos;
+    }
+
+    public void setDiasAsistidos(Integer diasAsistidos) {
+        this.diasAsistidos = diasAsistidos;
+    }
+
+    public Integer getDiasFaltados() {
+        return diasFaltados;
+    }
+
+    public void setDiasFaltados(Integer diasFaltados) {
+        this.diasFaltados = diasFaltados;
+    }
+
+    public BigDecimal getDescuentoAfp() {
+        return descuentoAfp;
+    }
+
+    public void setDescuentoAfp(BigDecimal descuentoAfp) {
+        this.descuentoAfp = descuentoAfp;
+    }
+
+    public BigDecimal getDescuentoOnp() {
+        return descuentoOnp;
+    }
+
+    public void setDescuentoOnp(BigDecimal descuentoOnp) {
+        this.descuentoOnp = descuentoOnp;
+    }
+
+    // Utilidad para repositorio
+    public Integer getIdUsuario() {
+        return usuario != null ? usuario.getIdUsuario() : null;
     }
 }

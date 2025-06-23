@@ -8,6 +8,11 @@ public class ViewEmployeeAdDTO {
     private String cargo;
     private String rol;
     private String estado;
+    private Integer id_planilla; 
+
+    // Constructor vacío necesario para frameworks y para new ViewEmployeeAdDTO()
+    public ViewEmployeeAdDTO() {
+    }
 
     // Constructor completo
     public ViewEmployeeAdDTO(Integer id_usuario, String nombres, String apellidos, String correo, String cargo, String rol, String estado) {
@@ -85,5 +90,13 @@ public class ViewEmployeeAdDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Integer getId_planilla() {
+        return id_planilla;
+    }
+
+    public void setId_planilla(Integer id_planilla) {
+        this.id_planilla = id_planilla;
     }
 }

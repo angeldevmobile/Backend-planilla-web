@@ -5,15 +5,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import com.example.SmartPayroll.models.User;
-import com.example.SmartPayroll.repositories.UserRepositoy;
+import com.example.SmartPayroll.repositories.UserRepository;
 @Slf4j
 @Service
 public class AuthService {
-    private final UserRepositoy userRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final boolean devMode = true; // Cambiar a false en producción
 
-    public AuthService(UserRepositoy userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
