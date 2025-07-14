@@ -137,7 +137,7 @@ public ResponseEntity<byte[]> descargarBoletaPDF(@PathVariable Integer idPlanill
         boleta.setPlanilla(planilla);
         boleta.setUsuario(planilla.getUsuario());
         boleta.setFecha_generacion(LocalDate.now());
-        boleta.setRuta_archivo("http://localhost:8085/api/planillas/boleta/" + planilla.getIdPlanilla() + "/pdf");
+        boleta.setRuta_archivo("https://backend-planilla-web.onrender.com/api/planillas/boleta/" + planilla.getIdPlanilla() + "/pdf");
         boletaRepository.save(boleta);
       }
 
