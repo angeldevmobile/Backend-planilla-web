@@ -2,11 +2,14 @@ package com.example.SmartPayroll.controllers;
 
 import com.example.SmartPayroll.models.Asistencia;
 import com.example.SmartPayroll.repositories.AsistenciaRepository;
+import com.example.SmartPayroll.services.ReporteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -73,4 +76,5 @@ public class AsistenciaController {
     List<Asistencia> asistencias = asistenciaRepository.findAllByIdUsuario(id_usuario);
     return ResponseEntity.ok(asistencias);
   }
+
 }

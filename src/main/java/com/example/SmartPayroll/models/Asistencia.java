@@ -2,6 +2,8 @@ package com.example.SmartPayroll.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -28,9 +30,9 @@ public class Asistencia {
     @JsonProperty("hora_salida")
     private String horaSalida;
 
-    @Transient
+    @Column(name = "horas_extra")
     @JsonProperty("horasExtra")
-    private Double horasExtra;
+    private BigDecimal horasExtra;
 
     // Getters y Setters
 
@@ -74,11 +76,11 @@ public class Asistencia {
         this.horaSalida = horaSalida;
     }
 
-    public Double getHorasExtra() {
+    public BigDecimal getHorasExtra() {
         return horasExtra;
     }
 
-    public void setHorasExtra(Double horasExtra) {
+    public void setHorasExtra(BigDecimal horasExtra) {
         this.horasExtra = horasExtra;
     }
 }

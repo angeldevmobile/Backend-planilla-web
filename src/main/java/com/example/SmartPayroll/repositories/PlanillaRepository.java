@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.SmartPayroll.models.Planilla;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public interface PlanillaRepository extends JpaRepository<Planilla, Integer> {
 
@@ -20,4 +21,8 @@ public interface PlanillaRepository extends JpaRepository<Planilla, Integer> {
 
     // Última planilla de un usuario
     Planilla findTopByUsuarioIdUsuarioOrderByFechaGeneracionDescIdPlanillaDesc(Integer idUsuario);
+
+    Optional<Planilla> findByUsuarioIdUsuarioAndPeriodoMesAndPeriodoAnio(Integer idUsuario, int mes, int anio);
+
+ 
 }

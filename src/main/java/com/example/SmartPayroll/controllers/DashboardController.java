@@ -43,8 +43,22 @@ public class DashboardController {
 
 @GetMapping("/ausencias-mes/{idUsuario}")
 public ResponseEntity<AusenciasPieDTO> getAusenciasJustificadas(@PathVariable int idUsuario) {
-    int[] valores = dashboardRepository.getAusenciasJustificadasYNo(idUsuario);
-    return ResponseEntity.ok(new AusenciasPieDTO(valores[0], valores[1]));
+    try {
+        int[] valores = dashboardRepository.getAusenciasJustificadasYNo(idUsuario);
+
+        int justificadas = 0;
+        int noJustificadas = 0;
+
+        if (valores != null) {
+            if (valores.length > 0) justificadas = valores[0];
+            if (valores.length > 1) noJustificadas = valores[1];
+        }
+
+        return ResponseEntity.ok(new AusenciasPieDTO(justificadas, noJustificadas));
+
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body(new AusenciasPieDTO(0, 0)); // O muestra el error
+    }
 }
 
 }

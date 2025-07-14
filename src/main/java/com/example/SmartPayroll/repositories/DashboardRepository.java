@@ -108,8 +108,9 @@ public int[] getAusenciasJustificadasYNo(int idUsuario) {
         .setParameter("idUsuario", idUsuario)
         .getSingleResult();
 
-    int justificadas = ((Number) result[0]).intValue();
-    int noJustificadas = ((Number) result[1]).intValue();
+    // Evita errores cuando el resultado es null
+    int justificadas = result[0] != null ? ((Number) result[0]).intValue() : 0;
+    int noJustificadas = result[1] != null ? ((Number) result[1]).intValue() : 0;
 
     return new int[]{justificadas, noJustificadas};
 }

@@ -63,6 +63,16 @@ public class Planilla {
     @Column(name = "descuento_onp")
     private BigDecimal descuentoOnp;
 
+
+    @Column(name = "descuento_salidas_anticipadas")
+    private BigDecimal descuentoSalidasAnticipadas;
+    public BigDecimal getDescuentoSalidasAnticipadas() {
+        return descuentoSalidasAnticipadas;
+    }
+
+    public void setDescuentoSalidasAnticipadas(BigDecimal descuentoSalidasAnticipadas) {
+        this.descuentoSalidasAnticipadas = descuentoSalidasAnticipadas;
+    }
     // Getters y Setters con camelCase
     public Integer getIdPlanilla() {
         return idPlanilla;

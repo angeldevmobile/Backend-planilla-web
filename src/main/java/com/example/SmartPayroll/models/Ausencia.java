@@ -26,6 +26,8 @@ public class Ausencia {
     private Boolean justificada;
     private String observaciones;
     private String documentoRespaldo;
+    @Column(name = "estado", nullable = false)
+    private String estado = "pendiente";
 
     public Long getIdAusencia() {
         return idAusencia;
@@ -81,6 +83,14 @@ public class Ausencia {
 
     public void setDocumentoRespaldo(String documentoRespaldo) {
         this.documentoRespaldo = documentoRespaldo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 

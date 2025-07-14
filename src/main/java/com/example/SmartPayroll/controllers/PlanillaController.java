@@ -100,7 +100,11 @@ public ResponseEntity<byte[]> descargarBoletaPDF(@PathVariable Integer idPlanill
       if (planilla == null) {
         return ResponseEntity.notFound().build();
       }
-      byte[] pdfBytes = planillaService.generarBoletaPDF(planilla);
+     byte[] pdfBytes = planillaService.generarBoletaPDF(
+    planilla.getIdUsuario(),
+    planilla.getPeriodoMes(),
+    planilla.getPeriodoAnio()
+);
       // Log aquí:
       logger.info("PDF generado y descargado para la planilla con ID: {}", idPlanilla);
       return ResponseEntity.ok()
@@ -121,7 +125,11 @@ public ResponseEntity<byte[]> descargarBoletaPDF(@PathVariable Integer idPlanill
       if (planilla == null) {
         return ResponseEntity.notFound().build();
       }
-      planillaService.generarBoletaPDF(planilla);
+      byte[] pdfBytes = planillaService.generarBoletaPDF(
+            planilla.getIdUsuario(),
+            planilla.getPeriodoMes(),
+            planilla.getPeriodoAnio()
+        );
 
       // NUEVO: Guarda la boleta si no existe
       if (!boletaRepository.existsByPlanilla(planilla)) {

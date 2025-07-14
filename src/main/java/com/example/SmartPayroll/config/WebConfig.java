@@ -15,7 +15,8 @@ public class WebConfig {
         registry.addMapping("/api/**")
             .allowedOrigins(
                 "http://localhost:8085",
-                "http://localhost:61710" // Flutter Web
+                "http://localhost:53216",
+                "https://deploy-flutter-planilla.onrender.com" // Flutter Web
         )
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             .allowedHeaders("*")
