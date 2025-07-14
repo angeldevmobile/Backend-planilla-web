@@ -70,7 +70,7 @@ public class PlanillaController {
     boleta.setPlanilla(nuevaPlanilla);
     boleta.setUsuario(usuario); 
     boleta.setFecha_generacion(LocalDate.now());
-    boleta.setRuta_archivo("http://localhost:8085/api/planillas/boleta/" + nuevaPlanilla.getIdPlanilla() + "/pdf");
+    boleta.setRuta_archivo("https://backend-planilla-web.onrender.com/api/planillas/boleta/" + nuevaPlanilla.getIdPlanilla() + "/pdf");
     boletaRepository.save(boleta);
 
     return "Planilla y boleta generadas para el usuario " + idUsuario;
